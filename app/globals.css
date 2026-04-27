@@ -490,7 +490,6 @@ body {
 }
 
 .editorCanvas {
-  border-top: 1px solid var(--border);
   padding-top: 2rem;
 }
 
@@ -546,14 +545,12 @@ body {
 .floatingToolbar {
   display: flex;
   background: var(--text);
-  border: 1px solid var(--border-bright);
   overflow: hidden;
 }
 
 .floatingToolbarBtn {
   background: transparent;
   border: none;
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--bg);
   font-family: var(--font-mono);
   font-size: 0.68rem;
@@ -564,19 +561,14 @@ body {
 }
 
 .floatingToolbarBtn:hover {
-  background: rgba(217, 64, 50, 0.9);
+  background: var(--accent);
   color: white;
-}
-
-.floatingToolbarBtn:last-child {
-  border-right: none;
 }
 
 /* ─── Audio player ───────────────────────────────────── */
 
 .audioCard {
   margin: 2rem 0;
-  border: 1px solid var(--border-bright);
   background: var(--bg-surface);
   padding: 1.1rem 1.2rem;
   position: relative;
@@ -612,21 +604,19 @@ body {
 
 .audioBtn {
   background: transparent;
-  border: 1px solid var(--border-bright);
-  color: var(--text);
+  border: none;
+  color: var(--text-dim);
   font-family: var(--font-mono);
   font-size: 0.66rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.45rem 0.8rem;
+  padding: 0.45rem 0;
   cursor: pointer;
-  transition: background 150ms, color 150ms;
+  transition: color 150ms;
 }
 
 .audioBtn:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: white;
+  color: var(--accent);
 }
 
 .audioRange {
@@ -690,53 +680,51 @@ button,
 .btnGhost {
   background: transparent;
   color: var(--text-dim);
-  border: 1px solid var(--border-bright);
+  border: none;
   font-family: var(--font-mono);
   font-size: 0.68rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.6rem 1rem;
-  transition: color 150ms, border-color 150ms;
+  padding: 0.6rem 0;
+  transition: color 150ms;
 }
 
 .btnGhost:hover {
   color: var(--text);
-  border-color: var(--text-dim);
 }
 
 .btnSmall {
   background: transparent;
   color: var(--text-faint);
-  border: 1px solid var(--border);
+  border: none;
   font-family: var(--font-mono);
   font-size: 0.62rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.4rem 0.7rem;
-  transition: color 150ms, border-color 150ms;
+  padding: 0.4rem 0;
+  transition: color 150ms;
 }
 
 .btnSmall:hover {
   color: var(--text-dim);
-  border-color: var(--border-bright);
 }
 
 .uploadButton {
   display: inline-block;
   background: transparent;
   color: var(--text-faint);
-  border: 1px solid var(--border);
+  border: none;
   font-family: var(--font-mono);
   font-size: 0.62rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.4rem 0.7rem;
-  transition: color 150ms, border-color 150ms;
+  padding: 0.4rem 0;
+  transition: color 150ms;
+  cursor: pointer;
 }
 
 .uploadButton:hover {
   color: var(--text-dim);
-  border-color: var(--border-bright);
 }
 
 /* ─── Empty state ────────────────────────────────────── */
@@ -757,16 +745,10 @@ textarea {
   font: inherit;
   background: transparent;
   color: var(--text);
-  border: 1px solid var(--border);
+  border: none;
   padding: 0.7rem 0.85rem;
   width: 100%;
   outline: none;
-  transition: border-color 150ms;
-}
-
-input:focus,
-textarea:focus {
-  border-color: var(--border-bright);
 }
 
 input::placeholder,
