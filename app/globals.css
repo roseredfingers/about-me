@@ -1,0 +1,810 @@
+:root {
+  --bg: #0d0b09;
+  --bg-surface: #131009;
+  --bg-raised: #1a1610;
+  --text: #ede8df;
+  --text-dim: #998e82;
+  --text-faint: #4a4038;
+  --accent: #d94032;
+  --accent-dim: rgba(217, 64, 50, 0.15);
+  --border: #252019;
+  --border-bright: #3a3228;
+  --rule: #2a231b;
+  --shadow: rgba(0, 0, 0, 0.6);
+  --font-display: "Fraunces", serif;
+  --font-body: "Cormorant Garamond", serif;
+  --font-mono: "Space Mono", monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--rule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+  background-size: 40px 40px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 18px;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Layout ─────────────────────────────────────────── */
+
+.appBackdrop {
+  min-height: 100vh;
+  padding: 0 0 6rem;
+}
+
+.pageWrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 clamp(1.2rem, 4vw, 3rem);
+}
+
+/* ─── Sitewide nav strip ─────────────────────────────── */
+
+.siteNav {
+  padding: 1rem 0;
+  margin-bottom: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.siteNavInner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 clamp(1.2rem, 4vw, 3rem);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.siteTitle {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+}
+
+.navActions {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+/* ─── Typography scale ───────────────────────────────── */
+
+.displayHeading {
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 8vw, 6.5rem);
+  font-weight: 300;
+  line-height: 0.96;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  font-style: italic;
+}
+
+.sectionHeading {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 300;
+  line-height: 1.1;
+  font-style: italic;
+  color: var(--text);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.9rem;
+}
+
+.softLead {
+  font-size: 1.15rem;
+  color: var(--text-dim);
+  margin-top: 0.8rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* ─── Home view ──────────────────────────────────────── */
+
+.homeHero {
+  padding: 3rem 0 2rem;
+  margin-bottom: 3.5rem;
+}
+
+.heroRule {
+  width: 2.5rem;
+  height: 2px;
+  background: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.heroSub {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-faint);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 1.4rem;
+}
+
+/* ─── Create blog form ───────────────────────────────── */
+
+.composerLabel {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  display: block;
+  margin-bottom: 2.5rem;
+  padding-top: 0.4rem;
+}
+
+.composerLabel span {
+  color: var(--accent);
+}
+
+.blogComposer {
+  display: grid;
+  gap: 0;
+  margin-bottom: 3.5rem;
+  background: var(--bg-surface);
+}
+
+.blogComposer input,
+.blogComposer textarea {
+  background: transparent;
+  border: none;
+  padding: 1rem 1.2rem;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  width: 100%;
+  outline: none;
+  transition: background 150ms;
+}
+
+.blogComposer input:focus,
+.blogComposer textarea:focus {
+  background: var(--bg-raised);
+}
+
+.blogComposer input::placeholder,
+.blogComposer textarea::placeholder {
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+.blogComposer textarea {
+  resize: none;
+  min-height: 80px;
+}
+
+.composerFooter {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.7rem 1rem;
+}
+
+/* ─── Blog grid ──────────────────────────────────────── */
+
+.blogGridLabel {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  padding-top: 0.4rem;
+  margin-bottom: 0.2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.blogGrid {
+  display: grid;
+  gap: 0;
+}
+
+.blogCard {
+  display: grid;
+  grid-template-columns: 3rem 1fr auto;
+  align-items: start;
+  gap: 1.2rem;
+  padding: 1.4rem 0;
+  cursor: pointer;
+  transition: background 150ms;
+}
+
+.blogCard:hover {
+  background: var(--bg-raised);
+  margin: 0 -1.2rem;
+  padding: 1.4rem 1.2rem;
+}
+
+.blogCardIndex {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  padding-top: 0.4rem;
+}
+
+.blogCardBody h2 {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+  line-height: 1.2;
+}
+
+.blogCardBody p {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  font-style: italic;
+  line-height: 1.45;
+}
+
+.blogCardDate {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-faint);
+  padding-top: 0.5rem;
+  white-space: nowrap;
+}
+
+/* ─── Backup strip ───────────────────────────────────── */
+
+.backupStrip {
+  margin-top: 4rem;
+  padding-top: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.backupStrip p {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-faint);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.backupActions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* ─── Blog view ──────────────────────────────────────── */
+
+.blogViewHeader {
+  padding: 2.5rem 0 2rem;
+  margin-bottom: 3rem;
+}
+
+.postList {
+  display: grid;
+  gap: 0;
+}
+
+.postCard {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 1.2rem;
+  padding: 1.4rem 0;
+  cursor: pointer;
+  transition: background 150ms;
+}
+
+.postCard:hover {
+  background: var(--bg-raised);
+  margin: 0 -1.2rem;
+  padding: 1.4rem 1.2rem;
+}
+
+.postCardIndex {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  padding-top: 0.4rem;
+}
+
+.postCardBody h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text);
+  margin-bottom: 0.35rem;
+  line-height: 1.2;
+}
+
+.postCardBody p {
+  font-size: 1rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.postCardDate {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-faint);
+}
+
+/* ─── Reading view ───────────────────────────────────── */
+
+.readingHeader {
+  padding: 3rem 0 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.readingHeader h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 4.8rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-top: 0.8rem;
+}
+
+.postContent {
+  max-width: 640px;
+  font-size: 1.2rem;
+  line-height: 1.9;
+  font-weight: 300;
+  color: var(--text);
+}
+
+.postContent p {
+  margin: 1.5rem 0;
+}
+
+.postContent h2 {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text);
+  margin: 2.5rem 0 0.8rem;
+}
+
+.postContent strong {
+  font-weight: 500;
+  color: var(--text);
+}
+
+.postContent em {
+  font-style: italic;
+  color: var(--text-dim);
+}
+
+.dropCap::first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-size: 5.5rem;
+  line-height: 0.8;
+  margin-right: 0.12em;
+  margin-top: 0.07em;
+  color: var(--accent);
+  font-style: italic;
+}
+
+.postContent blockquote {
+  border-left: 2px solid var(--accent);
+  padding-left: 1.4rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: var(--text-dim);
+  font-size: 1.25rem;
+}
+
+.postImage {
+  max-width: 100%;
+  display: block;
+  margin: 2.5rem 0;
+}
+
+/* ─── Editor ─────────────────────────────────────────── */
+
+.editorShell {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 clamp(1.2rem, 4vw, 3rem) 6rem;
+}
+
+.editorNav {
+  padding: 1rem 0;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editorTitleInput {
+  background: transparent;
+  border: none;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text);
+  width: 100%;
+  outline: none;
+  padding: 0 0 0.6rem;
+  margin-bottom: 1.4rem;
+}
+
+.editorTitleInput::placeholder {
+  color: var(--text-faint);
+}
+
+.editorMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.editorStatus {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.editorActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.editorCanvas {
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+}
+
+.ProseMirror {
+  min-height: 60vh;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--text);
+  caret-color: var(--accent);
+}
+
+.ProseMirror p {
+  margin: 1.3rem 0;
+}
+
+.ProseMirror h2 {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 300;
+  font-style: italic;
+  margin: 2.5rem 0 0.8rem;
+}
+
+.ProseMirror blockquote {
+  border-left: 2px solid var(--accent);
+  padding-left: 1.2rem;
+  margin: 1.8rem 0;
+  font-style: italic;
+  color: var(--text-dim);
+}
+
+.ProseMirror img,
+.ProseMirror audio {
+  max-width: 100%;
+  display: block;
+  margin: 1.8rem 0;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: var(--text-faint);
+  pointer-events: none;
+  height: 0;
+  font-style: italic;
+}
+
+/* ─── Floating toolbar ───────────────────────────────── */
+
+.floatingToolbar {
+  display: flex;
+  background: var(--text);
+  border: 1px solid var(--border-bright);
+  overflow: hidden;
+}
+
+.floatingToolbarBtn {
+  background: transparent;
+  border: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  padding: 0.45rem 0.7rem;
+  cursor: pointer;
+  transition: background 120ms;
+}
+
+.floatingToolbarBtn:hover {
+  background: rgba(217, 64, 50, 0.9);
+  color: white;
+}
+
+.floatingToolbarBtn:last-child {
+  border-right: none;
+}
+
+/* ─── Audio player ───────────────────────────────────── */
+
+.audioCard {
+  margin: 2rem 0;
+  border: 1px solid var(--border-bright);
+  background: var(--bg-surface);
+  padding: 1.1rem 1.2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.audioCard::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--accent);
+}
+
+.audioMeta p {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.9rem;
+  padding-left: 0.8rem;
+}
+
+.audioControls {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.9rem;
+  align-items: center;
+}
+
+.audioBtn {
+  background: transparent;
+  border: 1px solid var(--border-bright);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.8rem;
+  cursor: pointer;
+  transition: background 150ms, color 150ms;
+}
+
+.audioBtn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.audioRange {
+  width: 100%;
+  appearance: none;
+  height: 1px;
+  background: var(--border-bright);
+  outline: none;
+  cursor: pointer;
+}
+
+.audioRange::-webkit-slider-thumb {
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.audioTime {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
+.audioTrackFill {
+  height: 1px;
+  background: var(--accent);
+  margin-top: 0.7rem;
+  margin-left: 0.8rem;
+  opacity: 0.4;
+  transition: width 100ms linear;
+}
+
+/* ─── Buttons ────────────────────────────────────────── */
+
+button,
+.uploadButton {
+  font: inherit;
+  cursor: pointer;
+}
+
+.btnPrimary {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.65rem 1.1rem;
+  transition: opacity 150ms;
+}
+
+.btnPrimary:hover {
+  opacity: 0.85;
+}
+
+.btnGhost {
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--border-bright);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.6rem 1rem;
+  transition: color 150ms, border-color 150ms;
+}
+
+.btnGhost:hover {
+  color: var(--text);
+  border-color: var(--text-dim);
+}
+
+.btnSmall {
+  background: transparent;
+  color: var(--text-faint);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.7rem;
+  transition: color 150ms, border-color 150ms;
+}
+
+.btnSmall:hover {
+  color: var(--text-dim);
+  border-color: var(--border-bright);
+}
+
+.uploadButton {
+  display: inline-block;
+  background: transparent;
+  color: var(--text-faint);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.7rem;
+  transition: color 150ms, border-color 150ms;
+}
+
+.uploadButton:hover {
+  color: var(--text-dim);
+  border-color: var(--border-bright);
+}
+
+/* ─── Empty state ────────────────────────────────────── */
+
+.emptyState {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3rem 0;
+}
+
+/* ─── Inputs ─────────────────────────────────────────── */
+
+input,
+textarea {
+  font: inherit;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.7rem 0.85rem;
+  width: 100%;
+  outline: none;
+  transition: border-color 150ms;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--border-bright);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-bright);
+}
+
+/* ─── Responsive ─────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .blogCard,
+  .postCard {
+    grid-template-columns: 2.2rem 1fr;
+  }
+
+  .blogCardDate {
+    display: none;
+  }
+
+  .audioControls {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .audioTime {
+    grid-column: 1 / -1;
+  }
+}
